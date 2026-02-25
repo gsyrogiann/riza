@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RIZA — Botanical Wellness</title>
+  <meta name="description" content="RIZA — clean Mediterranean botanical wellness. Three roots. One ritual." />
+
+  <!-- Optional: Elegant Google Font (can be removed if you want system fonts only) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300,400,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Palette */
+      --offwhite: #FBFAF6;
+      --beige:    #F3EBDD;
+      --beige2:   #E9DFC9;
+      --ink:      #1D1C18;
+      --muted:    #6B655C;
+      --gold:     #B08A3A; /* soft gold for accents */
+      --card:     rgba(255,255,255,.55);
+      --stroke:   rgba(29,28,24,.10);
+      --shadow:   0 20px 60px rgba(29,28,24,.08);
+      --radius:   22px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+
+    /* Base body */
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.55;
+      letter-spacing:.2px;
+      overflow-x:hidden;
+      background: var(--offwhite);
+    }
+
+    /* ✅ Dynamic Mediterranean Light Background */
+    body::before,
+    body::after{
+      content:"";
+      position:fixed;
+      width:1200px;
+      height:1200px;
+      border-radius:50%;
+      filter: blur(120px);
+      z-index:-1;
+      opacity:.55;
+      animation: float 28s ease-in-out infinite alternate;
+      pointer-events:none;
+    }
+
+    body::before{
+      background: radial-gradient(circle, var(--beige) 0%, transparent 70%);
+      top:-300px;
+      left:-300px;
+    }
+
+    body::after{
+      background: radial-gradient(circle, var(--beige2) 0%, transparent 70%);
+      bottom:-400px;
+      right:-300px;
+      animation-duration: 34s;
+    }
+
+    @keyframes float{
+      0%{   transform: translateY(0px)  translateX(0px); }
+      50%{  transform: translateY(40px) translateX(30px); }
+      100%{ transform: translateY(-30px) translateX(-20px); }
+    }
+
+    /* Reduced motion accessibility */
+    @media (prefers-reduced-motion: reduce){
+      body::before, body::after{ animation:none; }
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:min(1120px, 92vw); margin:0 auto; }
+
+    /* Top nav */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(251,250,246,.75);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
+    }
+    .mark{
+      width:40px; height:40px;
+      border-radius:12px;
+      background: linear-gradient(135deg, rgba(176,138,58,.15), rgba(176,138,58,.03));
+      border:1px solid rgba(176,138,58,.22);
+      display:grid; place-items:center;
+      font-family: Fraunces, serif;
+      color: var(--gold);
+      box-shadow: 0 12px 30px rgba(176,138,58,.10);
+    }
+    .brand-name{
+      font-family: Fraunces, serif;
+      font-weight:600;
+      letter-spacing:.12em;
+      font-size:14px;
+    }
+    .brand-tag{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:2px;
+    }
+    .links{ display:flex; gap:18px; align-items:center; }
+    .links a{
+      font-size:13px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:12px;
+      transition:.2s ease;
+    }
+    .links a:hover{ background: rgba(233,223,201,.35); color: var(--ink); }
+
+    .cta{
+      display:flex; gap:10px; align-items:center;
+      min-width: 220px; justify-content:flex-end;
+    }
+    .btn{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.55);
+      padding:10px 14px;
+      border-radius: 999px;
+      font-size:13px;
+      color:var(--ink);
+      transition:.2s ease;
+      cursor:pointer;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 14px 30px rgba(29,28,24,.10); }
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(176,138,58,.18), rgba(176,138,58,.08));
+      border-color: rgba(176,138,58,.25);
+      color: #3B2B0E;
+    }
+
+    /* Hero */
+    .hero{ padding:72px 0 44px; }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:36px;
+      align-items:center;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(176,138,58,.20);
+      background: rgba(255,255,255,.45);
+      color:#5A4520;
+      font-size:12px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:99px; background: var(--gold);
+      box-shadow: 0 0 0 6px rgba(176,138,58,.12);
+    }
+    h1{
+      font-family: Fraunces, serif;
+      font-weight:600;
+      font-size: clamp(38px, 5vw, 58px);
+      line-height:1.05;
+      margin:14px 0 14px;
+      letter-spacing: -.02em;
+    }
+    .lead{
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 52ch;
+      margin:0 0 22px;
+    }
+    .hero-actions{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.5);
+      color: var(--muted);
+      font-size:13px;
+    }
+
+    /* Logo card */
+    .logo-card{
+      border-radius: var(--radius);
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.35));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .logo-card::before{
+      content:"";
+      position:absolute; inset:-120px -120px auto auto;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle at 30% 30%, rgba(176,138,58,.18), rgba(176,138,58,0) 60%);
+      transform: rotate(12deg);
+      pointer-events:none;
+    }
+    .logo-card-inner{ padding:24px; }
+    .logo-frame{
+      border-radius: 18px;
+      border:1px dashed rgba(29,28,24,.15);
+      background: rgba(243,235,221,.30);
+      aspect-ratio: 4 / 5;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+    }
+    .logo-frame img{
+      width: 78%;
+      height:auto;
+      display:block;
+      filter: drop-shadow(0 14px 28px rgba(29,28,24,.10));
+    }
+    .logo-placeholder{
+      text-align:center;
+      color: var(--muted);
+      width: 80%;
+      font-size:13px;
+    }
+    .logo-placeholder strong{
+      display:block;
+      font-family: Fraunces, serif;
+      color: var(--ink);
+      letter-spacing:.12em;
+      margin-bottom:8px;
+    }
+
+    /* Sections */
+    section{ padding: 46px 0; }
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .section-head h2{
+      font-family: Fraunces, serif;
+      font-weight:600;
+      font-size: 26px;
+      margin:0;
+      letter-spacing:-.01em;
+    }
+    .section-head p{
+      margin:0;
+      color: var(--muted);
+      max-width: 60ch;
+      font-size: 14px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+    }
+    .card{
+      border-radius: var(--radius);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.52);
+      padding:18px;
+      box-shadow: 0 10px 30px rgba(29,28,24,.06);
+    }
+    .card .title{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .card h3{
+      margin:0;
+      font-size:14px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-weight:600;
+    }
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius: 999px;
+      background: rgba(176,138,58,.12);
+      border:1px solid rgba(176,138,58,.18);
+      color:#5A4520;
+      white-space:nowrap;
+    }
+    .card p{ margin:0; color: var(--muted); font-size:14px; }
+
+    /* Products */
+    .product-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    .product{
+      border-radius: var(--radius);
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.58), rgba(255,255,255,.40));
+      padding:18px;
+      display:flex; gap:16px;
+      align-items:flex-start;
+      box-shadow: 0 12px 34px rgba(29,28,24,.06);
+    }
+    .product .thumb{
+      width:72px; height:72px;
+      border-radius: 18px;
+      border:1px solid rgba(176,138,58,.20);
+      background: radial-gradient(circle at 30% 25%, rgba(176,138,58,.20), rgba(243,235,221,.20));
+      display:grid; place-items:center;
+      font-family: Fraunces, serif;
+      color: var(--gold);
+      flex: 0 0 auto;
+    }
+    .product h3{ margin:0 0 6px; font-size:16px; font-family: Fraunces, serif; }
+    .product p{ margin:0; color: var(--muted); font-size:14px; }
+    .meta{
+      margin-top:12px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+
+    /* Footer */
+    footer{
+      padding: 34px 0 44px;
+      border-top:1px solid var(--stroke);
+      background: rgba(251,250,246,.55);
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:start;
+    }
+    .small{ color: var(--muted); font-size:13px; margin:0; }
+    .footer-links{ display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end; }
+    .footer-links a{ color: var(--muted); font-size:13px; padding:6px 10px; border-radius:12px; }
+    .footer-links a:hover{ background: rgba(233,223,201,.35); color: var(--ink); }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .cta{ min-width:auto; }
+      .brand{ min-width:auto; }
+      .cards{ grid-template-columns: 1fr; }
+      .product-grid{ grid-template-columns: 1fr; }
+      .footer-grid{ grid-template-columns: 1fr; }
+      .footer-links{ justify-content:flex-start; }
+      .links{ display:none; } /* optional: hide nav links on mobile */
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="RIZA home">
+        <div class="mark">R</div>
+        <div>
+          <div class="brand-name">RIZA</div>
+          <div class="brand-tag">Clean Mediterranean Botanical Wellness</div>
+        </div>
+      </a>
+
+      <nav class="links" aria-label="Primary">
+        <a href="#story">Η ιστορία</a>
+        <a href="#herbs">Τα βότανα</a>
+        <a href="#products">Προϊόντα</a>
+        <a href="#contact">Επικοινωνία</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn" href="#contact">Χονδρική / συνεργασίες</a>
+        <a class="btn primary" href="#products">Δες τα προϊόντα</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="kicker"><span class="dot"></span> Three roots. One ritual.</div>
+          <h1>RIZA — φως, ευεξία, ελληνικά βότανα.</h1>
+          <p class="lead">
+            Ένα clean Mediterranean brand εμπνευσμένο από τρεις τόπους, τρία βότανα και μία κοινή φιλοσοφία:
+            καθαρά συστατικά, ισορροπημένη γεύση, καθημερινό ritual.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#contact">Ζήτα συνεργασία</a>
+            <a class="btn" href="#story">Δες την ιστορία</a>
+            <span class="pill">Off-white &amp; light beige identity</span>
+            <span class="pill">Minimal botanical engraving</span>
+          </div>
+        </div>
+
+        <aside class="logo-card" aria-label="Logo preview">
+          <div class="logo-card-inner">
+            <div class="logo-frame">
+              <!-- Βάλε εδώ το logo σου: αντικατάστησε το src με το αρχείο σου (π.χ. images/riza-logo.png) -->
+              <!-- <img src="images/riza-logo.png" alt="RIZA logo" /> -->
+
+              <div class="logo-placeholder">
+                <strong>LOGO AREA</strong>
+                Βάλε το αρχείο του λογότυπου εδώ (PNG/SVG).<br>
+                Το layout είναι φτιαγμένο για off-white / beige και χρυσές λεπτομέρειες.
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="container">
+        <div class="section-head">
+          <h2>Η ιστορία</h2>
+          <p>
+            Τρεις ιδρυτές, τρεις τόποι, τρεις ρίζες. Ένα brand που τιμά την ελληνική βοτανική παράδοση
+            με σύγχρονη, καθαρή αισθητική.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="title">
+              <h3>Ήπειρος</h3>
+              <span class="badge">Τσάι του βουνού</span>
+            </div>
+            <p>Βουνό, αντοχή, καθαρή δύναμη. Το σύμβολο της ήρεμης ενέργειας.</p>
+          </div>
+
+          <div class="card">
+            <div class="title">
+              <h3>Καλάβρυτα</h3>
+              <span class="badge">Θυμάρι</span>
+            </div>
+            <p>Αρωματική ένταση και μεσογειακή ζωντάνια. Η “σπίθα” της φύσης.</p>
+          </div>
+
+          <div class="card">
+            <div class="title">
+              <h3>Πύργος Ηλείας</h3>
+              <span class="badge">Φασκόμηλο</span>
+            </div>
+            <p>Γήινη ισορροπία και ευεξία. Το φως της καθημερινότητας, σε μορφή ritual.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="herbs">
+      <div class="container">
+        <div class="section-head">
+          <h2>Τα βότανα</h2>
+          <p>
+            Καθαρή σύνθεση, καθαρή ταυτότητα. Minimal, “scientific” botanical engraving σε κάθε σημείο επαφής.
+          </p>
+        </div>
+
+        <div class="product-grid">
+          <div class="product">
+            <div class="thumb">S</div>
+            <div>
+              <h3>Mountain Tea (Sideritis)</h3>
+              <p>Ήπια τόνωση, διαύγεια και καθημερινή ευεξία. Το “καθαρό φως” της φύσης.</p>
+              <div class="meta">
+                <span class="pill">Wild harvest</span>
+                <span class="pill">Calm energy</span>
+                <span class="pill">Greek origin</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product">
+            <div class="thumb">T</div>
+            <div>
+              <h3>Thyme (Thymus)</h3>
+              <p>Αρωματική ένταση και ζωντάνια. Δίνει χαρακτήρα, χωρίς να “φωνάζει”.</p>
+              <div class="meta">
+                <span class="pill">Aromatic profile</span>
+                <span class="pill">Mediterranean</span>
+                <span class="pill">Clean taste</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product">
+            <div class="thumb">Sg</div>
+            <div>
+              <h3>Sage (Salvia)</h3>
+              <p>Ισορροπία, γήινη κομψότητα και ήρεμο ritual. Για “slow” καθημερινές στιγμές.</p>
+              <div class="meta">
+                <span class="pill">Balance</span>
+                <span class="pill">Elegant finish</span>
+                <span class="pill">Daily ritual</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product">
+            <div class="thumb">3</div>
+            <div>
+              <h3>The Trinity Blend</h3>
+              <p>Τρεις ρίζες, μία εμπειρία: light, clean, Mediterranean. Έτοιμο για premium positioning.</p>
+              <div class="meta">
+                <span class="pill">Founder story</span>
+                <span class="pill">Signature blend</span>
+                <span class="pill">Premium identity</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <div class="section-head">
+          <h2>Προϊόντα</h2>
+          <p>
+            Δύο format, μία ταυτότητα: ένταση (shot) και ισορροπία (250ml). Same DNA, different moment.
+          </p>
+        </div>
+
+        <div class="product-grid">
+          <div class="product">
+            <div class="thumb">60</div>
+            <div>
+              <h3>RIZA Shot — 60 ml</h3>
+              <p>Συμπυκνωμένη ένταση. Για ξεκίνημα ημέρας, πριν τη δουλειά ή ως “reset”.</p>
+              <div class="meta">
+                <span class="pill">Intense taste</span>
+                <span class="pill">Ritual</span>
+                <span class="pill">Premium</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product">
+            <div class="thumb">250</div>
+            <div>
+              <h3>RIZA Still — 250 ml</h3>
+              <p>Πιο “sipping” εμπειρία. Πίνεται κρύο on-the-go ή σε ποτήρι με πάγο.</p>
+              <div class="meta">
+                <span class="pill">Balanced</span>
+                <span class="pill">Everyday</span>
+                <span class="pill">Clean label</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Επικοινωνία</h2>
+          <p>Αν θες retail/wholesale συνεργασία ή να ζητήσεις δείγματα, στείλε μας μήνυμα.</p>
+        </div>
+
+        <div class="product" style="align-items:stretch;">
+          <div style="flex:1;">
+            <h3 style="margin-bottom:8px;">Στείλε μήνυμα</h3>
+            <p style="margin-bottom:14px; color: var(--muted);">Demo form — σύνδεσέ το με email service / backend όποτε θες.</p>
+
+            <form onsubmit="event.preventDefault(); alert('Έτοιμο! Αυτό είναι demo form 🙂');" style="display:grid; gap:10px;">
+              <label style="display:grid; gap:6px; font-size:13px; color:var(--muted);">
+                Ονοματεπώνυμο
+                <input required
+                  style="padding:12px 14px; border-radius:14px; border:1px solid var(--stroke); background:rgba(255,255,255,.6); outline:none;"
+                  placeholder="π.χ. Γιώργος Συρό" />
+              </label>
+
+              <label style="display:grid; gap:6px; font-size:13px; color:var(--muted);">
+                Email
+                <input required type="email"
+                  style="padding:12px 14px; border-radius:14px; border:1px solid var(--stroke); background:rgba(255,255,255,.6); outline:none;"
+                  placeholder="name@company.com" />
+              </label>
+
+              <label style="display:grid; gap:6px; font-size:13px; color:var(--muted);">
+                Μήνυμα
+                <textarea required rows="4"
+                  style="padding:12px 14px; border-radius:14px; border:1px solid var(--stroke); background:rgba(255,255,255,.6); outline:none; resize:vertical;"
+                  placeholder="Πες μας τι χρειάζεσαι (wholesale, δείγματα, συνεργασία κ.λπ.)"></textarea>
+              </label>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:6px;">
+                <button class="btn primary" type="submit">Αποστολή</button>
+                <span class="small">ή γράψε: <strong>hello@riza.com</strong> (placeholder)</span>
+              </div>
+            </form>
+          </div>
+
+          <div style="flex:1;">
+            <h3 style="margin-bottom:8px;">Brand notes</h3>
+            <p class="small" style="margin-bottom:10px;">
+              Χρώματα: Off-white / light beige με χρυσές λεπτομέρειες. Τόνος: clean Mediterranean, premium αλλά ήρεμο.
+            </p>
+            <div class="cards" style="grid-template-columns:1fr; margin-top:10px;">
+              <div class="card">
+                <div class="title">
+                  <h3>Logo style</h3>
+                  <span class="badge">Botanical engraving</span>
+                </div>
+                <p>Fine line, logo-friendly, “vector-like”. Ιδανικό για συσκευασία και signage.</p>
+              </div>
+              <div class="card">
+                <div class="title">
+                  <h3>Tagline</h3>
+                  <span class="badge">Option</span>
+                </div>
+                <p>“Three roots. One ritual.” ή “Light from the Mediterranean.”</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="brand-name" style="font-size:13px;">RIZA</div>
+        <p class="small">© <span id="year"></span> RIZA. Clean Mediterranean Botanical Wellness.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#story">Ιστορία</a>
+        <a href="#products">Προϊόντα</a>
+        <a href="#contact">Επικοινωνία</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
